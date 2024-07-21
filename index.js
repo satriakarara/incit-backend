@@ -77,7 +77,7 @@ app.post("/register", (req, res) => {
       connection.query(query2, (err, rows, fields) => {
         if (err) throw err;
         const code = generateRandomString();
-        const link = `http://localhost:1928/verifEmail?code=${code}`;
+        const link = `http://178.16.137.63:1928/verifEmail?code=${code}`;
         const mailData = {
           from: "kararasatria081@gmail.com",
           to: email,
@@ -240,7 +240,7 @@ app.get("/verifEmail", (req, res) => {
       let updateQuery = `UPDATE users SET active = 1 WHERE verif_code = "${code}"`;
       connection.query(updateQuery, (updateErr, updateResult) => {
         if (updateErr) throw updateErr;
-        let redirectUrl = "http://localhost:5173/dashboard";
+        let redirectUrl = "https://incit-2024.web.app/";
         res.redirect(redirectUrl);
         // res.status(200).send(rows[0]);
       });
@@ -255,7 +255,7 @@ app.get("/verifEmail", (req, res) => {
 app.post("/resendEMail", (req, res) => {
   const { email } = req.body;
   const code = generateRandomString();
-  const link = `http://localhost:1928/verifEmail?code=${code}`;
+  const link = `http://178.16.137.63:1928/verifEmail?code=${code}`;
   const mailData = {
     from: "kararasatria081@gmail.com",
     to: email,
